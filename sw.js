@@ -8,4 +8,12 @@ self.addEventListener('install',evt => {
 self.addEventListener('activate', avt => {
     console.log('Service has been activated');
     
+});
+
+
+//fetch event
+self.addEventListener('fetch', evt => {
+    console.log('fetch event', evt);
+    
 })
+
