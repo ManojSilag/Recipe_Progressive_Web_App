@@ -11,8 +11,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // render recipe data
 const renderRecipe = (data, id) => {
-   console.log(data, id);
-   
+  console.log(data, id);
+  
   const html = `
     <div class="card-panel recipe white row" data-id="${id}">
       <img src="/img/dish.png" alt="recipe thumb">
