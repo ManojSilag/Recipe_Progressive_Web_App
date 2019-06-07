@@ -1,5 +1,5 @@
-    const staticCacheName = 'site-static-v2';
-    const dynamicCacheName = 'site-dynamic-v2';
+    const staticCacheName = 'site-static-v5';
+    const dynamicCacheName = 'site-dynamic-v7';
     const assets = [
     '/',
     '/index.html',
@@ -36,7 +36,7 @@
     );
     });
 
-    
+
     // activate event
     self.addEventListener('activate', evt => {
     //console.log('service worker activated');
@@ -67,7 +67,7 @@
         }).catch(() => {
             if(evt.request.url.indexOf('.html') > -1){
             return caches.match('/pages/fallback.html');
-            }
+            }//
         })
         );
     }
