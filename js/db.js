@@ -13,13 +13,47 @@
     // real-time listener
     db.collection('recipes').onSnapshot(snapshot => {
     snapshot.docChanges().forEach(change => {
-        console.log( change.doc.data(), change.doc.id);
+        // console.log( change.doc.data(), change.doc.id);
         
         if(change.type === 'added'){
         renderRecipe(change.doc.data(), change.doc.id);
         }
         if(change.type === 'removed'){
         // remove the document data from the web page
+        removeRecipe(change.doc.id);
+        console.log(change.doc.id);
+        
         }
     });
     });
+
+
+    //add new recipe
+    const form = document.querySelector('form');
+    form.addEventListener('submit', evt => {
+
+        evt.preventDefault();
+
+        const recipe = {
+            Title: form.title.value,
+            Ingredients: form.ingredients.value
+        };
+
+        db.collection('recipes').add(recipe)
+        .catch(err => console.log(err));
+        
+        form.title.value = "";
+        form.ingredients.value = "";
+    })
+
+    //delete a recipe
+
+    const recipeContainer = document.querySelector('.recipes');
+    recipeContainer.addEventListener('click', evt =>{
+        console.log(evt);
+        
+        if(evt.target.tagName === 'I'){
+            const id = evt.target.getAttribute('data-id');
+            db.collection('recipes').doc(id).delete();
+        }
+    })
